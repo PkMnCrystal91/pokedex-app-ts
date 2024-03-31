@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { PokemonContext } from "./context/PokemonContext";
 import {
   SearchInput,
   PokemonList,
@@ -7,6 +9,8 @@ import {
 import "./App.css";
 
 export const App = () => {
+  const { pokemonsFiltered } = useContext(PokemonContext);
+
   return (
     <div className="container-fluid px-5 py-1 ">
       <h2 className="text-center">Pokemon List</h2>
@@ -14,7 +18,7 @@ export const App = () => {
 
       {/* Grid */}
       <div className="row justify-content-between">
-        <PokemonList />
+        <PokemonList url={pokemonsFiltered} />
         <CardDetails />
       </div>
 

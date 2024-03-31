@@ -4,13 +4,13 @@ import { AllPokemonsResult, PokeType } from "../interfaces/typesInterfaces";
 
 interface ContextProps {
   types: PokeType[];
+  pokemonsFiltered: string[] | null;
 }
 
 export const PokemonContext = createContext<ContextProps>({} as ContextProps);
 
 const PokemonProvider = ({ children }: any) => {
-  const allPokemonsUrl =
-    "https://pokeapi.co/api/v2/pokemon?limit=10000&offset=0";
+  const allPokemonsUrl = "https://pokeapi.co/api/v2/pokemon?limit=4&offset=0";
 
   const defaultState: PokeType = {
     name: "All",
@@ -18,6 +18,8 @@ const PokemonProvider = ({ children }: any) => {
   };
 
   const [allPokemons, setAllPokemons] = useState(null);
+  const [pokemonsFiltered, setPokemonsFiltered] = useState(null);
+
   const [types, setTypes] = useState([defaultState]);
 
   const getAllPokemons = async () => {
@@ -30,6 +32,7 @@ const PokemonProvider = ({ children }: any) => {
     );
 
     setAllPokemons(pokemons);
+    setPokemonsFiltered(pokemons);
   };
 
   useEffect(() => {
@@ -37,7 +40,7 @@ const PokemonProvider = ({ children }: any) => {
   }, []);
 
   return (
-    <PokemonContext.Provider value={{ types }}>
+    <PokemonContext.Provider value={{ types, pokemonsFiltered }}>
       {children}
     </PokemonContext.Provider>
   );
