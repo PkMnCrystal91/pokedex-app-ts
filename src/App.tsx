@@ -1,5 +1,6 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { PokemonContext } from "./context/PokemonContext";
+import { useFetchPokemon } from "./hooks/useFetchPokemon";
 import { usePagination } from "./hooks/usePagination";
 
 import {
@@ -8,11 +9,15 @@ import {
   Pagination,
   CardDetails,
 } from "./components";
+
 import "./App.css";
 
 export const App = () => {
   const { pokemonsFiltered } = useContext(PokemonContext);
+
   const { page, nextPage, previousPage } = usePagination();
+
+  const [pokemonName, setPokemonName] = useState(["blaziken"]);
 
   const perPage = 4;
 
@@ -24,7 +29,7 @@ export const App = () => {
       {/* Grid */}
       <div className="row justify-content-between">
         <PokemonList url={pokemonsFiltered} page={page} perPage={perPage} />
-        <CardDetails />
+        <CardDetails name={pokemonName} />
       </div>
 
       <Pagination

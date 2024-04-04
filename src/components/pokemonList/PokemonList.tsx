@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { useFetchPokemon } from "../../hooks/useFetchPokemon";
 import { PokemonItem } from "../PokemonItem/PokemonItem";
 interface Props {
   url?: string[] | null;

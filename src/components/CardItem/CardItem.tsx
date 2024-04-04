@@ -1,11 +1,10 @@
-import { useFetch } from "../../hooks/useForm";
+import { useFetchPokemon } from "../../hooks/useFetchPokemon";
+
 interface Props {
-  name: string[];
+  url: string;
 }
 
-export const CardDetails = ({ name }: Props) => {
-  const { pokeName, weight, types, sprites, moves } = useFetch(name);
-  console.log({ pokeName, weight, types, sprites, moves });
+export const CardItem = ({ url }: Props) => {
   return (
     <div className="col-5 bg-secondary pt-3 px-4">
       <div className="row">
@@ -17,7 +16,7 @@ export const CardDetails = ({ name }: Props) => {
       </div>
       <div className="row mt-2">
         <h5 className="text-center">Number#</h5>
-        <h5 className="text-center">{pokeName}</h5>
+        <h5 className="text-center">Name</h5>
       </div>
       <div className="">
         <h5 className="">Types</h5>
